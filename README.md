@@ -2,7 +2,7 @@
 ## Praktiline Ulesanne ALTER TABLE, CREATE TABLE
 XAMPP:
 
-v<img width="612" height="414" alt="{35474779-B992-4884-9BAC-B6D0BD43EB7B}" src="https://github.com/user-attachments/assets/670ba0ab-1b1b-4325-9d14-07485a36b73b" />
+<img width="612" height="414" alt="{35474779-B992-4884-9BAC-B6D0BD43EB7B}" src="https://github.com/user-attachments/assets/670ba0ab-1b1b-4325-9d14-07485a36b73b" />
 
 SQL:
 
