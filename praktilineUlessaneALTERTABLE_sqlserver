@@ -1,14 +1,15 @@
-use puhtejev;
+CREATE DATABASE PuhtejevSQL;
+use PuhtejevSQL;
 
 CREATE TABLE customer (
   idCustomer int IDENTITY(1,1),
   Name varchar(100) NOT NULL,
   contact varchar(100) DEFAULT NULL);
 
-INSERT INTO customer (idCustomer, Name, contact) VALUES
-(1, 'Jüri', '5551234'),
-(2, 'Liinak', '5555678'),
-(3, 'Mati', '5558765');
+INSERT INTO customer (Name, contact) VALUES
+('Jüri', '5551234'),
+('Liinak', '5555678'),
+('Mati', '5558765');
 
 CREATE TABLE kaup (
   kauba_kood int NOT NULL,
@@ -56,7 +57,7 @@ ALTER TABLE customer
 
 
 ALTER TABLE kaup
-  ADD PRIMARY KEY (kauba_kood);
+  ADD CONSTRAINT pk_kaubakood PRIMARY KEY(kauba_kood);
 ALTER TABLE kaup
   ADD CONSTRAINT uq_kaup_nimetus UNIQUE(nimetus);
 ALTER TABLE kaup
