@@ -1,0 +1,118 @@
+CREATE DATABASE puhtejev;
+use puhtejev;
+
+create table telefon (
+	telefonID INT PRIMARY KEY,
+	tootja VARCHAR(50),
+	telefonMudel VARCHAR(50),
+	hind money,
+	v_aasta int,
+	OS VARCHAR(40)
+);
+
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (1, 'Infinix', 'Infinix Hot 7', 19.99, 2019, 'Android 8.0 Oreo');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (2, 'Icemobile', 'Icemobile Prime 4.0 Plus', 64.99, 2015, 'Android 4.4.2');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (3, 'Motorola', 'Motorola V750', 8.99, 2003, 'Feature phone');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (4, 'Vodafone', 'Vodafone 340', 79.99, 2009, 'Feature phone');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (5, 'Gionee', 'Gionee Ctrl V6L', 3.29, 2014, 'Android 4.4.2');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (6, 'Celkon', 'Celkon C606', 2.29, 2012, 'Feature phone');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (7, 'Celkon', 'Celkon A403', 19.99, 2015, 'Android 4.4.2');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (8, 'Samsung', 'Samsung Galaxy E5', 109.99, 2015, 'Android 4.4.4');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (9, 'Samsung', 'Samsung Galaxy Fame Lite Duos S6792L', 24.99, 2013, 'Android 4.1.2');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (10, 'Realme', 'Realme C2s', 5.49, 2020, 'Android 9.0, ColorOS 6.1');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (11, 'LG', 'LG CG180', 4.29, 2007, 'Feature phone');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (12, 'LG', 'LG K10 (2017)', 2.5, 2017, 'Android 7.0, up to Android 8.0');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (13, 'Motorola', 'Motorola DROID X', 149.99, 2010, 'Android 2.1, up to 2.3');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (14, 'BlackBerry', 'BlackBerry Storm3', 59.99, 0, 'BlackBerry OS 6.1');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (15, 'Motorola', 'Motorola Edge', 12.99, 2020, 'Android 10');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (16, 'Motorola', 'Motorola MOTO XT882', 129.99, 2011, 'Android 2.3');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (17, 'Motorola', 'Motorola EM25', 2.49, 2009, 'Feature phone');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (18, 'Lenovo', 'Lenovo Vibe Z2 Pro', 24.99, 2014, 'Android 4.4.2, up to 5.0.2');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (19, 'Energizer', 'Energizer Ultimate U630S Pop', 59.99, 0, 'Android 9.0');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (20, 'Philips', 'Philips W7376', 3.49, 2013, 'Android 4.0.4');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (21, 'verykool', 'verykool s6005X Cyprus Pro', 2.29, 2017, 'Android 7.0');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (22, 'Samsung', 'Samsung Galaxy J7', 3.49, 2015, 'Android 5.1, up to 7.1.1');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (23, 'Lenovo', 'Lenovo Tab S8', 1.29, 2014, 'Android 4.4.2');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (24, 'Xiaomi', 'Xiaomi Redmi Note 9 Pro Max', 1.99, 2020, 'Android 10, MIUI 12');
+insert into telefon (telefonID, tootja, telefonMudel, hind, v_aasta, OS) values (25, 'Sony', 'Sony Ericsson C901 GreenHeart', 5.99, 2009, 'Feature phone');
+
+--Select kuvab ainult 2 veergu tabelist
+SELECT tootja, telefonMudel AS mudel FROM telefon;
+--sorteerimine
+--ASC kasvavas järjekorras
+SELECT tootja, telefonMudel AS mudel, hind
+FROM telefon
+ORDER BY hind ASC; -- võib olla ilma ASC
+
+--DESC kahanevas järjekorras
+SELECT tootja, telefonMudel AS mudel, hind
+FROM telefon
+ORDER BY hind DESC;
+
+--võrdlemine >, <, =, <=, >=
+SELECT telefonMudel, hind
+FROM telefon
+WHERE hind >35
+ORDER by hind;
+
+--leia mudelid vahemikus 10-15 euro
+SELECT telefonMudel, hind
+FROM telefon
+WHERE hind BETWEEN 10 and 15
+ORDER by hind;
+
+--sama päring ilma between
+SELECT telefonMudel, hind
+FROM telefon
+where hind >=10 AND hind <=15
+ORDER by hind;
+
+--distinct ?! näitab ainult üks kordus
+SELECT DISTINCT OS from telefon;
+
+--võrdlemine tekstiga LIKE
+SELECT telefonMudel, tootja FROM telefon
+WHERE tootja LIKE 'Samsung'
+
+--IN kuvab vastavus loetelus - соответствие перечислению
+SELECT tootja, telefonMudel
+from telefon
+WHERE tootja in ('Sony', 'Samsung', 'Motorola');
+
+--Ilma IN
+SELECT telefonMudel, tootja FROM telefon
+WHERE tootja LIKE 'Samsung' OR tootja LIKE 'Motorola' OR tootja LIKE 'Sony';
+
+--leia mudelid mis algavad S tähega
+--% tähendab üks kõik sümboolit
+SELECT telefonMudel, tootja FROM telefon
+WHERE telefonMudel LIKE 'S%'
+--sisaldab s täht: '%s%'
+
+--agregaat funktsioonid: AVG, MAX, MIN, SUM, COUNT
+--keskmine väljastamise aasta
+SELECT AVG(v_aasta) AS keskmineAasta
+FROM telefon
+--MAX
+SELECT MAX(v_aasta) AS keskmineAasta
+FROM telefon
+--MIN
+SELECT MIN(v_aasta) AS keskmineAasta
+FROM telefon
+--telefonide üldkogus
+SELECT Count(*) AS 'üldKogus'
+FROM telefon
+--Sum
+SELECT SUM(hind) AS keskmineHind
+FROM telefon
+
+--Keeruline variant funktsiooniga
+--Telefonide üldkogus iga tootja kohta
+SELECT tootja, Count(*) AS 'üldKogus'
+FROM telefon
+GROUP BY tootja;
+
+--top 6
+SELECT TOP 6 tootja, hind
+FROM telefon
+ORDER BY hind DESC
