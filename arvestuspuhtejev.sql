@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Jun 10, 2026 at 11:30 PM
+-- Generation Time: Jun 11, 2026 at 10:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -201,6 +201,27 @@ INSERT INTO `reisija` (`ReisijaID`, `Nimi`, `Piletinumber`, `LendID`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tagasiside`
+--
+
+CREATE TABLE `tagasiside` (
+  `TagasisideID` int(11) NOT NULL,
+  `ReisijaID` int(11) NOT NULL,
+  `Hinne` int(11) NOT NULL,
+  `Kommentaar` text DEFAULT NULL,
+  `Kuupaev` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tagasiside`
+--
+
+INSERT INTO `tagasiside` (`TagasisideID`, `ReisijaID`, `Hinne`, `Kommentaar`, `Kuupaev`) VALUES
+(4, 2, 4, 'Kõik oli korras', '2026-06-11 10:59:42');
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `vaade_lennud_lennujaamad`
 -- (See below for the actual view)
 --
@@ -222,6 +243,21 @@ CREATE TABLE `vaade_reisijad_lennud` (
 ,`Piletinumber` varchar(30)
 ,`LennuNumber` varchar(20)
 ,`Valjumisaeg` datetime
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vaade_reisijate_tagasiside`
+-- (See below for the actual view)
+--
+CREATE TABLE `vaade_reisijate_tagasiside` (
+`Nimi` varchar(100)
+,`Piletinumber` varchar(30)
+,`LennuNumber` varchar(20)
+,`Hinne` int(11)
+,`Kommentaar` text
+,`Kuupaev` datetime
 );
 
 -- --------------------------------------------------------
@@ -254,6 +290,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `vaade_reisijad_lennud`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vaade_reisijad_lennud`  AS SELECT `reisija`.`Nimi` AS `Nimi`, `reisija`.`Piletinumber` AS `Piletinumber`, `lend`.`LennuNumber` AS `LennuNumber`, `lend`.`Valjumisaeg` AS `Valjumisaeg` FROM (`reisija` join `lend` on(`reisija`.`LendID` = `lend`.`LendID`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vaade_reisijate_tagasiside`
+--
+DROP TABLE IF EXISTS `vaade_reisijate_tagasiside`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vaade_reisijate_tagasiside`  AS SELECT `reisija`.`Nimi` AS `Nimi`, `reisija`.`Piletinumber` AS `Piletinumber`, `lend`.`LennuNumber` AS `LennuNumber`, `tagasiside`.`Hinne` AS `Hinne`, `tagasiside`.`Kommentaar` AS `Kommentaar`, `tagasiside`.`Kuupaev` AS `Kuupaev` FROM ((`tagasiside` join `reisija` on(`tagasiside`.`ReisijaID` = `reisija`.`ReisijaID`)) join `lend` on(`reisija`.`LendID` = `lend`.`LendID`)) ;
 
 -- --------------------------------------------------------
 
@@ -295,6 +340,13 @@ ALTER TABLE `reisija`
   ADD KEY `fk_reisija_lend` (`LendID`);
 
 --
+-- Indexes for table `tagasiside`
+--
+ALTER TABLE `tagasiside`
+  ADD PRIMARY KEY (`TagasisideID`),
+  ADD KEY `ReisijaID` (`ReisijaID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -323,6 +375,12 @@ ALTER TABLE `reisija`
   MODIFY `ReisijaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `tagasiside`
+--
+ALTER TABLE `tagasiside`
+  MODIFY `TagasisideID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -337,6 +395,12 @@ ALTER TABLE `lend`
 --
 ALTER TABLE `reisija`
   ADD CONSTRAINT `fk_reisija_lend` FOREIGN KEY (`LendID`) REFERENCES `lend` (`LendID`);
+
+--
+-- Constraints for table `tagasiside`
+--
+ALTER TABLE `tagasiside`
+  ADD CONSTRAINT `tagasiside_ibfk_1` FOREIGN KEY (`ReisijaID`) REFERENCES `reisija` (`ReisijaID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
